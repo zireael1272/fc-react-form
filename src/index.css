@@ -1,4 +1,13 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  background-image: url("https://images.pexels.com/photos/7130566/pexels-photo-7130566.jpeg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  min-height: 100vh;
   font-family:
     "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode",
     Geneva, Verdana, sans-serif;
