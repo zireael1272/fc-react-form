@@ -41,12 +41,12 @@
   border: 1px solid grey;
 }
 
-.FormInput:user-valid {
-  border: 1px solid rgb(17, 208, 0);
+.FormInputValid {
+  border: 1.5px solid rgb(17, 208, 0);
 }
 
-.FormInput:user-invalid {
-  border: 2px solid rgb(208, 0, 0);
+.FormInputInvalid {
+  border: 1.5px solid rgb(208, 0, 0);
 }
 
 .FormBtn {
