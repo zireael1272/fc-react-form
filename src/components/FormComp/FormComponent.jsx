@@ -24,6 +24,7 @@ class FormComponent extends Component {
       passwordRepeat: INITIAL_VALUES.password,
       isPasswordRepeatValid: false,
       isAgree: false,
+      showPassword: false,
     };
   }
 
@@ -46,6 +47,12 @@ class FormComponent extends Component {
     this.setState({
       passwordRepeat: value,
       isPasswordRepeatValid: value === this.state.password,
+    });
+  };
+
+  handleShowPassword = () => {
+    this.setState({
+      showPassword: !this.state.showPassword,
     });
   };
 
@@ -90,6 +97,7 @@ class FormComponent extends Component {
       isPasswordValid,
       isPasswordRepeatValid,
       agree,
+      showPassword,
     } = this.state;
 
     const nameClassNames = classNames(styles.FormInput, {
@@ -142,10 +150,23 @@ class FormComponent extends Component {
             <input
               className={passwordClassNames}
               placeholder="Enter password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               value={password}
               onChange={this.handlePasswordChange}
             ></input>
+            <button
+              className={styles.ShowBtn}
+              type="button"
+              onClick={this.handleShowPassword}
+            >
+              <i
+                className={
+                  this.state.showPassword
+                    ? "fa-solid fa-eye-low-vision"
+                    : "fa-solid fa-eye"
+                }
+              ></i>
+            </button>
           </label>
           <label className={styles.LabelForm}>
             Enter password again

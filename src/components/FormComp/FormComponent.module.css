@@ -32,8 +32,19 @@
 }
 
 .LabelForm {
-  color: rgb(0, 132, 198);
   width: 100%;
+  position: relative;
+  color: rgb(0, 132, 198);
+}
+
+.ShowBtn {
+  position: absolute;
+  top: 50%;
+  right: 2px;
+  background-color: transparent;
+  color: rgb(0, 132, 198);
+  border: none;
+  cursor: pointer;
 }
 
 .FormInput {
