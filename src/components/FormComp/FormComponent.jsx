@@ -23,6 +23,7 @@ class FormComponent extends Component {
       isPasswordValid: false,
       passwordRepeat: INITIAL_VALUES.password,
       isPasswordRepeatValid: false,
+      isAgree: false,
     };
   }
 
@@ -48,13 +49,30 @@ class FormComponent extends Component {
     });
   };
 
+  handleAgree = ({ target }) => {
+    this.setState({
+      agree: target.checked,
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { isNameValid, isEmailValid, isPasswordValid, isPasswordRepeatValid } =
-      this.state;
+    const {
+      isNameValid,
+      isEmailValid,
+      isPasswordValid,
+      isPasswordRepeatValid,
+      agree,
+    } = this.state;
 
-    if (isNameValid && isEmailValid && isPasswordValid && isPasswordRepeatValid) {
+    if (
+      isNameValid &&
+      isEmailValid &&
+      isPasswordValid &&
+      isPasswordRepeatValid &&
+      agree
+    ) {
       alert("All fields is correct. Data sent");
     } else {
       alert("Not all fielst is correct");
@@ -71,6 +89,7 @@ class FormComponent extends Component {
       isEmailValid,
       isPasswordValid,
       isPasswordRepeatValid,
+      agree,
     } = this.state;
 
     const nameClassNames = classNames(styles.FormInput, {
@@ -137,6 +156,14 @@ class FormComponent extends Component {
               value={passwordRepeat}
               onChange={this.handlePasswordRepeatChange}
             ></input>
+          </label>
+          <label className={`${styles.LabelForm} ${styles.Checkbox}`}>
+            <input
+              type="checkbox"
+              checked={agree}
+              onChange={this.handleAgree}
+            ></input>
+            I Agree All Statements In Terms Of Service
           </label>
 
           <button className={styles.FormBtn}>Sign Up</button>
