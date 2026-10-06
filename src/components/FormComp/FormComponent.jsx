@@ -2,7 +2,7 @@ import { Component } from "react";
 import classNames from "classnames";
 import styles from "./FormComponent.module.css";
 
-const INITIAL_VALUES = { name: "", email: "", password: "" };
+const INITIAL_VALUES = { name: "", email: "", password: "", passwordRepeat: "" };
 
 const SIGN_UP_REGEXP = {
   name: /^(\D*).{2,30}$/,
@@ -21,6 +21,8 @@ class FormComponent extends Component {
       isEmailValid: false,
       password: INITIAL_VALUES.password,
       isPasswordValid: false,
+      passwordRepeat: INITIAL_VALUES.password,
+      isPasswordRepeatValid: false,
     };
   }
 
@@ -39,12 +41,20 @@ class FormComponent extends Component {
     });
   };
 
+  handlePasswordRepeatChange = ({ target: { value } }) => {
+    this.setState({
+      passwordRepeat: value,
+      isPasswordRepeatValid: value === this.state.password,
+    });
+  };
+
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { isNameValid, isEmailValid, isPasswordValid } = this.state;
+    const { isNameValid, isEmailValid, isPasswordValid, isPasswordRepeatValid } =
+      this.state;
 
-    if (isNameValid && isEmailValid && isPasswordValid) {
+    if (isNameValid && isEmailValid && isPasswordValid && isPasswordRepeatValid) {
       alert("All fields is correct. Data sent");
     } else {
       alert("Not all fielst is correct");
@@ -52,8 +62,16 @@ class FormComponent extends Component {
   };
 
   render() {
-    const { name, email, password, isNameValid, isEmailValid, isPasswordValid } =
-      this.state;
+    const {
+      name,
+      email,
+      password,
+      passwordRepeat,
+      isNameValid,
+      isEmailValid,
+      isPasswordValid,
+      isPasswordRepeatValid,
+    } = this.state;
 
     const nameClassNames = classNames(styles.FormInput, {
       [styles.FormInputValid]: isNameValid,
@@ -68,6 +86,11 @@ class FormComponent extends Component {
     const passwordClassNames = classNames(styles.FormInput, {
       [styles.FormInputValid]: isPasswordValid,
       [styles.FormInputInvalid]: !isPasswordValid,
+    });
+
+    const passwordRepeatClassNames = classNames(styles.FormInput, {
+      [styles.FormInputValid]: isPasswordRepeatValid,
+      [styles.FormInputInvalid]: !isPasswordRepeatValid,
     });
 
     return (
@@ -103,6 +126,16 @@ class FormComponent extends Component {
               type="password"
               value={password}
               onChange={this.handlePasswordChange}
+            ></input>
+          </label>
+          <label className={styles.LabelForm}>
+            Enter password again
+            <input
+              className={passwordRepeatClassNames}
+              placeholder="Enter password again"
+              type="password"
+              value={passwordRepeat}
+              onChange={this.handlePasswordRepeatChange}
             ></input>
           </label>
 

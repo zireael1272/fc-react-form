@@ -23,14 +23,17 @@
 }
 
 .Form {
+  width: 100%;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
 }
 
 .LabelForm {
   color: rgb(0, 132, 198);
+  width: 100%;
 }
 
 .FormInput {
